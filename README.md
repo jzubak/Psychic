@@ -1,1 +1,1 @@
-# Psychic
+# Psychic.io
