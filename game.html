@@ -2,70 +2,66 @@
 <html lang="en-us">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Psychic Game</title>
+    <meta charset="UTF-8">
+    <title>Psychic Game</title>
 </head>
-
 <body>
 
-  <div id="game">
-    <h1>Press any key to start game</h1>
-    <h2>Can you guess what letter I am thinking of?</h2>
-    <p id="computerGuessText"></p>
-    <p id="userGuessText"></p>
-    <p id="maxguessestext"></p>
-    <p id="winsText"></p>
-    <p id="lossText"></p>
-  </div>
+    <div id="game">
+        <h1>Press any key to start game</h1>
+        <h2>Can you guess what letter I am thinking of?</h2>
+        <p id="computerGuessText"></p>
+        <p id="userGuessText"></p>
+        <p id="maxguessestext"></p>
+        <p id="winsText"></p>
+        <p id="lossText"></p>
+    </div>
 
-  <script type="text/javascript">
+    <script type="text/javascript">
 
-    var computerChoices = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-    var computerSelectionText = document.getElementById("computerGuessText");
-    var useroptions = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-    var userGuessText = document.getElementById("userGuessText");
-    var wins = 0;
-    var winsText = document.getElementById("winsText");
-    var loss = 0;
-    var lossText = document.getElementById("lossText");
-    var maxguesses = 10;
-    var maxguessestext = document.getElementById("maxguessestext");
-    var computerdisplay = "_";
+        var computerChoices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+        var computerSelectionText = document.getElementById("computerGuessText");
+        var useroptions = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+        var userGuessText = document.getElementById("userGuessText");
+        var wins = 0;
+        var winsText = document.getElementById("winsText");
+        var loss = 0;
+        var lossText = document.getElementById("lossText");
+        var maxguesses = 10;
+        var maxguessestext = document.getElementById("maxguessestext");
+        var computerdisplay = " ";
 
-    document.onkeyup = function(event) {
-      var userGuess = event.key;
-      
-      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-    
-    if ((userGuess === useroptions)){
+        document.onkeyup = function (game) {
 
-    if (userGuess != computerChoices) {
-        var computerdisplay = " ";     
-        loss++;
-        maxguesses--;;
-       }
-        else computerdisplay === computerChoices
-        {
-        // var computerdisplay = computerChoices;
-        wins++;
-        }
-    if (maxguesses <= 0)
-        alert("You Lose")
-    }
-    };
-    
-        computerGuessText.textContent ="The computers letter was " + computerdisplay;
-        userGuessText.textContent = "Your guess  " + userGuess;
-        maxguessestext.textContent = "Guesses Remaining: " + maxguesses;
+            var userGuess = event.key;
+
+            var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+            if ((userGuess === useroptions)) {
+
+                if (userGuess != computerGuess) {
+                    computerdisplay = " ";
+                    loss++;
+                    maxguesses--;
+                }
+                else 
+                    computerdisplay = computerGuess;
+                    alert("Hooray You Win!");
+                    wins++;
+                
+            }
+       
+        maxguessestext.textContent = "You only have " + maxguesses-- + " guesses remaining";
         winsText.textContent = "wins: " + wins;
         lossText.textContent = "losses: " + loss;
-    ;
+        computerGuessText.textContent = "The computers letter was " + computerdisplay;
+        userGuessText.textContent = "Your guess was " + userGuess;
 
-    // function restart(){
-    //     start()
-    // };
-    // };
-  </script>
+        if (maxguesses === -1)
+                alert("You Lose");
+    };
+
+    </script>
 
 </body>
 
