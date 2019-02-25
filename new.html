@@ -18,60 +18,83 @@
     </div>
 
     <script type="text/javascript">
+
         var computerChoices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-        var computerGuessText = document.getElementById("computerGuessText");
-        // var useroptions = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+        var computerSelectionText = document.getElementById("computerGuessText");
+        var useroptions = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
         var userGuessText = document.getElementById("userGuessText");
         var wins = 0;
-        var winsText = document.getElementById("winsText");
         var loss = 0;
         var lossText = document.getElementById("lossText");
         var maxguesses = 10;
         var maxguessestext = document.getElementById("maxguessestext");
-        var computerdisplay = [];
+        var computerdisplay = " ";
+        var guessed = [];
+
+        resetGame();
+        display();
 
         document.onkeyup = function (event) {
-            function play(){
-            var userGuess = event.key.toLowerCase();
+
+            var userGuess = event.key;
+
             var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
-            if (event.keyCode>64 && event.keyCode<91) {
-                if (userGuess === computerGuess){
-                    wins++
+            if ((userGuess === useroptions)) {
+                if (userGuess ==== computerGuess){
+                    win();
                 }
-                else computerdisplay = " ";
-                maxguesses--;
-
-
-                // if (userGuess != computerGuess) {
-                //     computerdisplay = " ";
-                //     maxguesses--;
-                // }
-                // else 
-                //     computerdisplay === computerGuess;
-                //     alert("Hooray You Win!");
-                //     wins++;
-                
+                else if (maxguesses - 1 === 0);{
+                    loss();
+                }
+                else if {
+                    fail(guess);
+                }
             
+                display();
+            }
+        }
+        
+        function display(){
+       
         maxguessestext.textContent = "You only have " + maxguesses-- + " guesses remaining";
         winsText.textContent = "wins: " + wins;
         lossText.textContent = "losses: " + loss;
         computerGuessText.textContent = "The computers letter was " + computerdisplay;
         userGuessText.textContent = "Your guess was " + userGuess;
-            }
-            else if (event.keyCode>64 != event.keyCode<91){
-                alert("Invalid")
-            }
-          else if (maxguesses === -1)
-                alert("You Lose");
-                loss++;
         
-        lossText.textContent = "losses: " + loss;
-        };
-        
-// function play (){
+        }
 
-}
+        function win(){
+            wins++;
+            resetGame();
+        }
+
+        function loss(){
+            loss++;
+            resetGame();
+        }
+
+        function fail(useroptions){
+            maxguesses--;
+            userGuess.push(userGuessText);
+        }
+
+        function resetGame(){
+            maxguesses = 10;
+            guessed = [];
+            userguess = useroptions[Math.random()* useroptions.length];
+
+        }
+
+        if (maxguesses === 0){
+                alert("You Lose");
+                // guessed = [];
+                // maxguesses = 10;
+        }
+        // lossText.textContent = "losses: " + loss++;
+    ;
+
     </script>
 
 </body>
