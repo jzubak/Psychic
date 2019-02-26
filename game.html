@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Psychic Game</title>
 </head>
+
 <body>
 
     <div id="game">
@@ -31,40 +32,45 @@
         var computerdisplay = [];
 
         document.onkeyup = function (event) {
-            function play(){
-            var userGuess = event.key.toLowerCase();
-            var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+            function play() {
+                var userGuess = event.key.toLowerCase();
+                var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
-            if (event.keyCode>64 && event.keyCode<91) {
-                if (userGuess === computerGuess){
-                    wins++
+                if (event.keyCode > 64 && event.keyCode < 91) {
+                    if (userGuess === computerGuess) {
+                        wins++;
+                        computerdisplay = computerGuess;
+                        alert("WOOHOO! YOU WIN!");
+                        if (userGuess === computerGuess) {
+                            play();
+                            maxguesses = 10;
+                        }
+                    }
+                    else computerdisplay = " ";
+                    maxguesses--;
+                    
+                    maxguessestext.textContent = "You only have " + maxguesses + " guesses remaining";
+                    winsText.textContent = "wins: " + wins;
+                    lossText.textContent = "losses: " + loss;
+                    computerGuessText.textContent = "The computers letter was " + computerdisplay;
+                    userGuessText.textContent = "Your guess was " + userGuess;
                 }
-                else computerdisplay = " ";
-                maxguesses--;
 
+                if (maxguesses === 0) {
+                    alert("You Lose");
+                    loss++;
+                    lossText.textContent = "losses: " + loss;
+                    if (maxguesses === 0){
+                        play();
+                        maxguesses = 10;
+                    }
+                }
 
-         //test
-                
-            
-        maxguessestext.textContent = "You only have " + maxguesses-- + " guesses remaining";
-        winsText.textContent = "wins: " + wins;
-        lossText.textContent = "losses: " + loss;
-        computerGuessText.textContent = "The computers letter was " + computerdisplay;
-        userGuessText.textContent = "Your guess was " + userGuess;
-            }
-            else if (event.keyCode>64 != event.keyCode<91){
-                alert("Invalid")
-            }
-          else if (maxguesses === -1)
-                alert("You Lose");
-                loss++;
-        
-        lossText.textContent = "losses: " + loss;
+            };
+            play();
         };
-        
-// function play (){
+            //  };
 
-}
     </script>
 
 </body>
